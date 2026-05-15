@@ -1,7 +1,9 @@
 import type { OrgDetails, RecommendationResponse, GeneratedTool, FormatType } from '../types'
 
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
+
 async function apiFetch<T>(path: string, body: unknown): Promise<T> {
-  const response = await fetch(path, {
+  const response = await fetch(`${BASE_URL}${path}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),

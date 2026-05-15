@@ -16,7 +16,14 @@ if (!apiKey) {
 }
 
 const app = express()
-app.use(cors())
+app.use(cors({
+  origin: [
+    'https://lead-gen-builder-frontend.vercel.app',
+    'http://localhost:5173',
+    'http://localhost:3000',
+  ],
+  credentials: true,
+}))
 app.use(express.json())
 
 function cleanJson(raw: string): string {
@@ -205,7 +212,11 @@ Return ONLY this JSON object. No markdown. No code fences. No explanation.
   }
 })
 
-const PORT = parseInt(process.env.PORT || '3001', 10)
-app.listen(PORT, () => {
-  console.log(`\n🥑 Avocado Hub API running on http://localhost:${PORT}`)
-})
+if (!process.env.VERCEL) {
+  const PORT = parseInt(process.env.PORT || '3001', 10)
+  app.listen(PORT, () => {
+    console.log(`\n🥑 Avocado Hub API running on http://localhost:${PORT}`)
+  })
+}
+
+export default app
