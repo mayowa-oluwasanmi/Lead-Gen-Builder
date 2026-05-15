@@ -19,6 +19,7 @@ const app = express()
 app.use(cors({
   origin: [
     'https://lead-gen-builder-frontend.vercel.app',
+    'https://lead-gen-builder-frontend-2xqx1cdp5-mayowa-oluwasanmis-projects.vercel.app',
     'http://localhost:5173',
     'http://localhost:3000',
   ],
